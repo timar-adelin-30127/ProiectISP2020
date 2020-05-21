@@ -52,7 +52,16 @@ public class AirplaneTicketController {
      * @apiNote: this method should throw {@link NoTicketAvailableException} exception if ticket not found
      */
     public AirplaneTicket getTicketDetails(final String ticketId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        for(AirplaneTicket airplaneTicket:tickets){
+            if(airplaneTicket.getId().equals(ticketId)){
+                return airplaneTicket;
+            }else{
+                throw new NoTicketAvailableException();
+            }
+        }
+        return null;
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -67,7 +76,9 @@ public class AirplaneTicketController {
      * {@link NoTicketAvailableException} - if destination exists but no ticket with NEW status available
      */
     public void buyTicket(final String destination, final String customerId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+
+        // throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**

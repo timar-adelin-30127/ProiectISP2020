@@ -9,7 +9,11 @@ public class Ticket {
     private Double price;
 
     public Ticket(String id, String customerName, Double price) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        this.id=id;
+        this.customerName=customerName;
+        this.price=price;
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public String getId() {
