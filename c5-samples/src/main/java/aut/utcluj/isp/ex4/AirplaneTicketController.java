@@ -83,7 +83,7 @@ public class AirplaneTicketController {
      */
     public void buyTicket(final String destination, final String customerId) {
 
-        boolean sameStatus=false;
+        boolean newStatus=true;
 
         for (int i = 0; i < tickets.size(); i++) {
             if (tickets.get(i).getDestination().equals(destination)) {
@@ -91,15 +91,19 @@ public class AirplaneTicketController {
                 if (tickets.get(i).getStatus().equals(TicketStatus.NEW)) {
                     tickets.get(i).setStatus(TicketStatus.ACTIVE);
                     tickets.get(i).setCustomerId(customerId);
+                    newStatus=true;
                     return;
                 }else{
-                    if(i==tickets.size()-2){
-                        throw new NoTicketAvailableException();
-                    }
+                   newStatus=false;
                 }
 
 
+
+
             } else {
+                if(i==tickets.size()-1&& !newStatus){
+                    throw new NoTicketAvailableException();
+                }
 
                 if (i == (tickets.size() - 1)) {
 
