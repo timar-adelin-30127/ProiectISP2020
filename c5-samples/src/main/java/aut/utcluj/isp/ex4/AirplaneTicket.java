@@ -1,6 +1,8 @@
 package aut.utcluj.isp.ex4;
 
-/**
+import java.util.Comparator;
+
+/**C
  * @author stefan
  */
 public class AirplaneTicket {
@@ -40,5 +42,9 @@ public class AirplaneTicket {
 
     public void setStatus(TicketStatus status) {
         this.status = status;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 }
