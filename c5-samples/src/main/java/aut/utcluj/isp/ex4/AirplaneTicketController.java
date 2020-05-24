@@ -83,7 +83,17 @@ public class AirplaneTicketController {
      */
     public void buyTicket(final String destination, final String customerId) {
 
-        boolean newStatus=true;
+        boolean containsDestination = false;
+        for (AirplaneTicket at:tickets) {
+            if(at.getDestination().equals(destination))
+            {
+                containsDestination = true;
+                break;
+            }
+        }
+        if(!containsDestination) {
+            throw new NoDestinationAvailableException();
+        }
 
         for (int i = 0; i < tickets.size(); i++) {
             if (tickets.get(i).getDestination().equals(destination)) {
@@ -91,26 +101,11 @@ public class AirplaneTicketController {
                 if (tickets.get(i).getStatus().equals(TicketStatus.NEW)) {
                     tickets.get(i).setStatus(TicketStatus.ACTIVE);
                     tickets.get(i).setCustomerId(customerId);
-                    newStatus=true;
                     return;
-                }else{
-                   newStatus=false;
-                }
-
-
-
-
-            } else {
-                if(i==tickets.size()-1&& !newStatus){
-                    throw new NoTicketAvailableException();
-                }
-
-                if (i == (tickets.size() - 1)) {
-
-                    throw new NoDestinationAvailableException();
                 }
             }
         }
+        throw new NoTicketAvailableException();
         // throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -162,6 +157,7 @@ public class AirplaneTicketController {
                     throw new TicketNotAssignedException();
                 } else {
                     airplaneTicket.setCustomerId(customerId);
+                    return;
                 }
             } else {
                 if (airplaneTicket.equals(tickets.get(tickets.size() - 1))) {
