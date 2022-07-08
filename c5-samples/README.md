@@ -15,3 +15,5 @@ USE CASE DIAGRAM
 
 
 ![Class DIAGRAM](./docs/UseCaseDiagram1.jpg)
+
+Foarte frumos acest proiect
